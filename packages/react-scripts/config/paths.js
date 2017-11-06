@@ -99,14 +99,14 @@ if (
   module.exports = {
     dotenv: resolveOwn('template/.env'),
     appPath: resolveApp('.'),
-    appBuild: resolveOwn('../../build'),
-    appPublic: resolveOwn('template/public'),
-    appHtml: resolveOwn('template/public/index.html'),
-    appIndexJs: resolveOwn('template/src/index.js'),
+    appBuild: resolveOwn(process.env.CRA_APP_BUILD || '../../build'),
+    appPublic: resolveOwn(process.env.CRA_APP_PUBLIC || 'template/public'),
+    appHtml: resolveOwn(process.env.CRA_APP_HTML || 'template/public/index.html'),
+    appIndexJs: resolveOwn(process.env.CRA_APP_INDEXJS || 'template/src/index.js'),
     appPackageJson: resolveOwn('package.json'),
-    appSrc: resolveOwn('template/src'),
+    appSrc: resolveOwn(process.env.CRA_APP_SRC || 'template/src'),
     yarnLockFile: resolveOwn('template/yarn.lock'),
-    testsSetup: resolveOwn('template/src/setupTests.js'),
+    testsSetup: resolveOwn(process.env.CRA_TESTS_SETUP || 'template/src/setupTests.js'),
     appNodeModules: resolveOwn('node_modules'),
     publicUrl: getPublicUrl(resolveOwn('package.json')),
     servedPath: getServedPath(resolveOwn('package.json')),
@@ -114,5 +114,6 @@ if (
     ownPath: resolveOwn('.'),
     ownNodeModules: resolveOwn('node_modules'),
   };
+  
 }
 // @remove-on-eject-end
